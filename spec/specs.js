@@ -45,7 +45,6 @@ describe("Board", function() {
     testSpace1.markBy(testPlayer);
     testSpace2.markBy(testPlayer);
     testSpace3.markBy(testPlayer);
-  // debugger;
     expect(testBoard.win()).to.equal(true);
   });
 });

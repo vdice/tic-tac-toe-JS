@@ -53,7 +53,7 @@ Board.prototype.win = function() {
 };
 
 
-
+//wining combos:
 // (1,1), (1,2), (1,3) #across the top
 // (2,1), (2,2), (2,3)#across the middle
 // (3,1), (3,2), (3,3) #across the bottom

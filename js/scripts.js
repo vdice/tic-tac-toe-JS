@@ -41,12 +41,15 @@ Board.prototype.win = function() {
     [this.findSpace(1,2), this.findSpace(2,2), this.findSpace(3,2)],
   ];
 
-
+  var result = 0;
   winningCombos.forEach(function(combo){
     if ((combo[0].markedBy === combo[1].markedBy) && (combo[0].markedBy === combo[2].markedBy) && (combo[1].markedBy === combo[2].markedBy)) {
-      return true;
+        result += 1;
     }
   });
+  if (result > 0) {
+    return true;
+  }
 };
 
 

@@ -1,34 +1,73 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="js/scripts.js"></script>
     <title>Tic Tac Toe</title>
   </head>
   <body>
+    <center>
     <div class="container">
-      <h1>Tic Tac Toe</h1>
+      <h1>Tic-Tac- <img src="css/images/toe.jpg"></h1>
+      <br>
       <div id="board">
         <table>
           <tr id="row1">
-            <td class="square"><span id="top-left"></span></td>
-            <td class="square v"><span id="top-center"></span></td>
-            <td class="square"><span id="top-right"></span></td>
+            <td class="square">
+              <span id="top-left">
+                <img class="hand" src="css/images/hand.jpg" style="height: 35px;">
+                <img class="pumpkin" src="css/images/pumpkin.jpg" style="height: 35px;"></span>
+            </td>
+            <td class="square v">
+              <span id="top-center">
+                <img class="hand" src="css/images/hand.jpg" style="height: 35px;"><img class="pumpkin" src="css/images/pumpkin.jpg" style="height: 35px;">
+              </span>
+            </td>
+            <td class="square">
+              <span id="top-right">
+                <img class="hand" src="css/images/hand.jpg" style="height: 35px;"><img class="pumpkin" src="css/images/pumpkin.jpg" style="height: 35px;">
+              </span>
+            </td>
           </tr>
           <tr id="row2">
-            <td class="square h"><span id="left-middle"></span></td>
-            <td class="square v h"><span id="center"></span></td>
-            <td class="square h"><span id="right-middle"></span></td>
+            <td class="square h">
+              <span id="left-middle">
+                <img class="hand" src="css/images/hand.jpg" style="height: 35px;"><img class="pumpkin" src="css/images/pumpkin.jpg" style="height: 35px;">
+              </span>
+            </td>
+            <td class="square v h">
+              <span id="center">
+                <img class="hand" src="css/images/hand.jpg" style="height: 35px;"><img class="pumpkin" src="css/images/pumpkin.jpg" style="height: 35px;">
+              </span>
+            </td>
+            <td class="square h">
+              <span id="right-middle">
+                <img class="hand" src="css/images/hand.jpg" style="height: 35px;"><img class="pumpkin" src="css/images/pumpkin.jpg" style="height: 35px;">
+              </span>
+            </td>
           </tr>
           <tr id="row3">
-            <td class="square"><span id="bottom-left"></span></td>
-            <td class="square v"><span id="bottom-center"></span></td>
-            <td class="square"><span id="bottom-right"></span></td>
+            <td class="square">
+              <span id="bottom-left">
+                <img class="hand" src="css/images/hand.jpg" style="height: 35px;"><img class="pumpkin" src="css/images/pumpkin.jpg" style="height: 35px;">
+              </span>
+            </td>
+            <td class="square v">
+              <span id="bottom-center">
+                <img class="hand" src="css/images/hand.jpg" style="height: 35px;"><img class="pumpkin" src="css/images/pumpkin.jpg" style="height: 35px;">
+              </span>
+            </td>
+            <td class="square">
+              <span id="bottom-right">
+                <img class="hand" src="css/images/hand.jpg" style="height: 35px;"><img class="pumpkin" src="css/images/pumpkin.jpg" style="height: 35px;">
+              </span>
+            </td>
           </tr>
         </table>
       </div>
     </div>
-
+  </center>
   </body>
 </html>

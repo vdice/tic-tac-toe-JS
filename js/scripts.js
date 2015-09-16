@@ -10,7 +10,8 @@ function Space(xCoordinate, yCoordinate) {
 }
 
 Space.prototype.markBy = function(player) {
-  this.markedBy = player;
+  var index = Board.findSpace(this.xCoordinate, this.yCoordinate);
+  Board.spaces[index].markedBy = player;
 };
 
 function Board() {
@@ -18,32 +19,38 @@ function Board() {
 
 }
 
+Board.prototype.findSpace = function(xCoordinate, yCoordinate) {
+  var foundSpace = null;
 
-Board.prototype.win = function() {
-
-  var winningCombos = [
-    [(new Space (1,1)), (new Space (1,2)), (new Space (1,3))],
-    [(new Space (2,1)), (new Space (2,2)), (new Space (2,3))],
-    [(new Space (3,1)), (new Space (3,2)), (new Space (3,3))],
-    [(new Space (1,1)), (new Space (2,2)), (new Space (3,3))],
-    [(new Space (3,1)), (new Space (2,2)), (new Space (1,3))],
-    [(new Space (1,3)), (new Space (2,3)), (new Space (3,3))],
-    [(new Space (1,1)), (new Space (2,1)), (new Space (3,1))],
-    [(new Space (1,2)), (new Space (2,2)), (new Space (3,2))],
-  ];
-  // var winningCombos = [
-  //   [[1,1], [1,2], [1,3]], [[2,1], [2,2], [2,3]], [[3,1], [3,2], [3,3]],
-  //   [[1,1], [2,2], [3,3]], [[3,1], [2,2], [1,3]],
-  //   [[1,3], [2,3], [3,3]], [[1,1], [2,1], [3,1]], [[1,2], [2,2], [3,2]]
-  // ];
-
-
-  winningCombos.forEach(function(combo){
-    if ((combo[0].markedBy === combo[1].markedBy) && (combo[0].markedBy === combo[2].markedBy) && (combo[1].markedBy === combo[2].markedBy)) {
-      return true;
+  for (var i = 0; i < this.spaces.length; i++) {
+    if ((this.spaces[i].xCoordinate === xCoordinate) && (this.spaces[i].yCoordinate === yCoordinate)) {
+      foundSpace = i;
     }
-  });
+  }
+  return foundSpace;
 };
+
+
+// Board.prototype.win = function() {
+//
+//   var winningCombos = [
+//     [new Space(1,1), new Space(1,2), new Space(1,3)],
+//     [new Space(2,1), new Space(2,2), new Space(2,3)],
+//     [new Space(3,1), new Space(3,2), new Space(3,3)],
+//     [new Space(1,1), new Space(2,2), new Space(3,3)],
+//     [new Space(3,1), new Space(2,2), new Space(1,3)],
+//     [new Space(1,3), new Space(2,3), new Space(3,3)],
+//     [new Space(1,1), new Space(2,1), new Space(3,1)],
+//     [new Space(1,2), new Space(2,2), new Space(3,2)],
+//   ];
+//
+//
+//   winningCombos.forEach(function(combo){
+//     if ((combo[0].markedBy === combo[1].markedBy) && (combo[0].markedBy === combo[2].markedBy) && (combo[1].markedBy === combo[2].markedBy)) {
+//       return true;
+//     }
+//   });
+// };
 
 
 

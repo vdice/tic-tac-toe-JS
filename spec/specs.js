@@ -6,12 +6,12 @@ describe('Player', function() {
 });
 
 describe('Space', function() {
-  it("it returns the player's mark", function() {
+  it("it returns x coord of space", function() {
     var testSpace = new Space(1,2);
     expect(testSpace.xCoordinate).to.equal(1);
   });
 
-  it("returns the players mark", function() {
+  it("it returnsy coord of space", function() {
     var testSpace = new Space(1,2);
     expect(testSpace.yCoordinate).to.equal(2);
   });
@@ -35,16 +35,29 @@ describe("Board", function() {
     var testBoard = new Board();
     expect(testBoard.findSpace(1,2)).to.equal(testBoard.spaces[1])
   });
+});
 
+describe("Game", function() {
   it("tells if there are 3 spaces in a row marked by the same player", function() {
     var testPlayer = new Player("X");
-    var testBoard = new Board();
-    var testSpace1 = testBoard.spaces[0];
-    var testSpace2 = testBoard.spaces[1];
-    var testSpace3 = testBoard.spaces[2];
-    testSpace1.markBy(testPlayer);
-    testSpace2.markBy(testPlayer);
-    testSpace3.markBy(testPlayer);
-    expect(testBoard.win()).to.equal(true);
+    var testPlayer1 = new Player("O");
+    var testGame = new Game();
+
+    testGame.board.spaces[0].markBy(testPlayer);
+    testGame.board.spaces[3].markBy(testPlayer1);
+    testGame.board.spaces[1].markBy(testPlayer);
+    testGame.board.spaces[7].markBy(testPlayer1);
+    testGame.board.spaces[2].markBy(testPlayer);
+    testGame.board.spaces[4].markBy(testPlayer);
+    expect(testGame.win()).to.equal(true);
   });
-});
+
+  it("changes turns", function() {
+    var testPlayer = new Player("X");
+    var testPlayer1 = new Player("O");
+    var testGame = new Game();
+    expect(testGame.turn()).to.eql(testPlayer);
+    testGame.changeTurn();
+    expect(testGame.turn()).to.eql(testPlayer1);
+  })
+})

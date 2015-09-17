@@ -28,30 +28,55 @@ Board.prototype.findSpace = function(xCoordinate, yCoordinate) {
     return this.spaces[foundSpace];
 };
 
-Board.prototype.win = function() {
 
+
+function Game() {
+  this.player = new Player("X");
+  this.player1 = new Player("O");
+  this.board = new Board();
+  this.currentTurn = this.player
+}
+
+Game.prototype.turn = function() {
+  return this.currentTurn
+}
+
+Game.prototype.changeTurn = function() {
+  if (this.currentTurn = this.player) {
+     this.currentTurn = this.player1;
+   }
+     else  {
+       this.currentTurn = this.player;
+     }
+
+}
+
+Game.prototype.win = function() {
+
+  var board = this.board
   var winningCombos = [
-    [this.findSpace(1,1), this.findSpace(1,2), this.findSpace(1,3)],
-    [this.findSpace(2,1), this.findSpace(2,2), this.findSpace(2,3)],
-    [this.findSpace(3,1), this.findSpace(3,2), this.findSpace(3,3)],
-    [this.findSpace(1,1), this.findSpace(2,2), this.findSpace(3,3)],
-    [this.findSpace(3,1), this.findSpace(2,2), this.findSpace(1,3)],
-    [this.findSpace(1,3), this.findSpace(2,3), this.findSpace(3,3)],
-    [this.findSpace(1,1), this.findSpace(2,1), this.findSpace(3,1)],
-    [this.findSpace(1,2), this.findSpace(2,2), this.findSpace(3,2)],
+    [board.findSpace(1,1), board.findSpace(1,2), board.findSpace(1,3)],
+    [board.findSpace(2,1), board.findSpace(2,2), board.findSpace(2,3)],
+    [board.findSpace(3,1), board.findSpace(3,2), board.findSpace(3,3)],
+    [board.findSpace(1,1), board.findSpace(2,2), board.findSpace(3,3)],
+    [board.findSpace(3,1), board.findSpace(2,2), board.findSpace(1,3)],
+    [board.findSpace(1,3), board.findSpace(2,3), board.findSpace(3,3)],
+    [board.findSpace(1,1), board.findSpace(2,1), board.findSpace(3,1)],
+    [board.findSpace(1,2), board.findSpace(2,2), board.findSpace(3,2)],
   ];
 
-  var result = 0;
+  // var result = 0;
+  var win = false;
   winningCombos.forEach(function(combo){
     if ((combo[0].markedBy === combo[1].markedBy) && (combo[0].markedBy === combo[2].markedBy) && (combo[1].markedBy === combo[2].markedBy)) {
-        result += 1;
+        win = true;
     }
   });
-  if (result > 0) {
-    return true;
-  }
-};
-
+  // if (result > 0) {
+  //   return true;
+  // }
+  return win;
+}
 
 //wining combos:
 // (1,1), (1,2), (1,3) #across the top

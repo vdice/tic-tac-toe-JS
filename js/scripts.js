@@ -34,17 +34,16 @@ function Game() {
   this.currentTurn = this.playerX;
 }
 
+Game.prototype.otherPlayer = function() {
+  return this.turn() === this.playerX ? this.playerO : this.playerX;
+}
+
 Game.prototype.turn = function() {
   return this.currentTurn;
 }
 
 Game.prototype.changeTurn = function() {
-  if (this.turn() === this.playerX) {
-     this.currentTurn = this.playerO;
-   }
-   else  {
-     this.currentTurn = this.playerX;
-   }
+  this.currentTurn = this.otherPlayer();
 }
 
 Game.prototype.win = function() {
@@ -74,6 +73,11 @@ Game.prototype.win = function() {
 
 $(document).ready(function() {
   var game = new Game();
+  var x = game.playerX;
+  var o = game.playerO;
+  var marks = {'X': String('<img class="hand" src="img/hand.jpg">'),
+               'O': String('<img class="pumpkin" src="img/pumpkin.jpg">')};
+
 
   $(".square").click(function() {
     var coords = $(this).attr('id').split(',') // "1, 2" -> ["1", "2"]
@@ -81,19 +85,21 @@ $(document).ready(function() {
 
     if (!space.markedBy) {
       if (game.turn().mark === "X") {
-        $(this).append('<img class="hand" src="img/hand.jpg" style="height: 35px;">');
-        space.markBy(game.playerX);
+        $(this).append(marks[x.mark]);
+        space.markBy(x);
       } else {
-        $(this).append('<img class="pumpkin" src="img/pumpkin.jpg" style="height: 35px;">');
-        space.markBy(game.playerO);
+        $(this).append(marks[o.mark]);
+        space.markBy(o);
       }
       game.changeTurn()
     }
 
     if (game.win()) {
       var winningPlayer = space.markedBy;
-      // add to tracker stats #winningPlayer #wins id++
-      // add to tracker stats #losingPlayer #losses id++
+      var losingPlayer = game.turn();
+      $("#wins").append(marks[winningPlayer.mark]);
+      $("#losses").append(marks[losingPlayer.mark]);
+
       alert("Winner!!!!!")
     } else if ($(".square .hand").length === 5) {
       alert('Cats!!!')
@@ -104,4 +110,5 @@ $(document).ready(function() {
     game = new Game();
     $(".square").html("");
   });
+
 });

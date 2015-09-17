@@ -59,5 +59,13 @@ describe("Game", function() {
     expect(testGame.turn()).to.eql(testGame.playerO);
     testGame.changeTurn();
     expect(testGame.turn()).to.eql(testGame.playerX);
-  })
+  });
+
+  it('determines other player', function() {
+    var testGame = new Game();
+
+    expect(testGame.otherPlayer()).to.eql(testGame.playerO);
+    testGame.changeTurn();
+    expect(testGame.otherPlayer()).to.eql(testGame.playerX);
+  });
 })

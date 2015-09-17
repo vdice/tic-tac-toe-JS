@@ -3,8 +3,8 @@ body {
 }
 
 .square{
-  width:100px;
-  height:100px;
+  width:6em;
+  height:6em;
 }
 
 .v{
@@ -24,4 +24,17 @@ td {
 .header-img {
   width: 3em;
   height: 3em;
+}
+
+#score-column {
+  margin-top: 10em;
+  padding: 1.5em;
+}
+
+.hand {
+  height: 2em;
+}
+
+.pumpkin {
+  height: 2em;
 }

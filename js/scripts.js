@@ -27,6 +27,14 @@ Board.prototype.findSpace = function(xCoordinate, yCoordinate) {
   return this.spaces[foundSpace];
 }
 
+Board.prototype.findEmptySpace = function() {
+  var randomIndex = Math.floor((Math.random() * 9));
+  while (this.spaces[randomIndex].markedBy) {
+    randomIndex = Math.floor((Math.random() * 9));
+  }
+  return this.spaces[randomIndex];
+}
+
 function Game() {
   this.playerX = new Player("X");
   this.playerO = new Player("O");
@@ -72,44 +80,58 @@ Game.prototype.win = function() {
 }
 
 $(document).ready(function() {
+  var computerMode = false;
   var game = new Game();
   var marks = {'X': String('<img class="hand" src="img/hand.jpg">'),
                'O': String('<img class="pumpkin" src="img/pumpkin.jpg">')};
 
+  $("#play-computer-button").click(function() {
+    computerMode = !computerMode
+    if (computerMode) {
+      $(this).text("Computer Mode")
+    } else {
+      $(this).text("Play Computer")
+    }
+  });
+
   $(".square").click(function() {
-    var coords = $(this).attr('id').split(',') // "1, 2" -> ["1", "2"]
+    var coords = $(this).attr('id').split('') // "12" -> ["1", "2"]
     var space = game.board.findSpace(Number(coords[0]), Number(coords[1]));
 
-    if (!space.markedBy) {
-      $(this).append(marks[game.turn().mark])
-      space.markBy(game.turn())
-      game.changeTurn()
+    if(!game.win()) {
+      if (!space.markedBy) {
+        $(this).append(marks[game.turn().mark]);
+        space.markBy(game.turn());
+        game.changeTurn();
+
+        if (computerMode && !game.win()) {
+          var computerSpace = game.board.findEmptySpace();
+          var squareCoords = [computerSpace.xCoordinate, computerSpace.yCoordinate]
+          var squareId = "#" + squareCoords.join('');
+          $(squareId).append(marks[game.turn().mark]);
+          computerSpace.markBy(game.turn());
+          game.changeTurn();
+          space = computerSpace;
+        }
+      }
+
+      if (game.win()) {
+        var winningPlayer = space.markedBy;
+        var losingPlayer = game.turn();
+        $("#wins").append(marks[winningPlayer.mark]);
+        $("#losses").append(marks[losingPlayer.mark]);
+
+        $("#winModalBody").html(marks[winningPlayer.mark] + ' wins!')
+        $("#winModal").modal({'show' : true});
+      } else if ($(".square .hand").length === 5) {
+        $("#catModalBody").html('<img src="img/cat.gif"><br><br>' + "I win!")
+        $("#catModal").modal({'show' : true});
+      }
     }
-
-    var showModal = function(myModalName) {
-
-      $("#" + myModalName).modal({'show' : true});
-
-    }
-
-    if (game.win()) {
-      var winningPlayer = space.markedBy;
-      var losingPlayer = game.turn();
-      $("#wins").append(marks[winningPlayer.mark]);
-      $("#losses").append(marks[losingPlayer.mark]);
-
-    $("#winModalBody").html(marks[winningPlayer.mark] + ' wins!')
-      showModal("winModal");
-    } else if ($(".square .hand").length === 5) {
-    $("#catModalBody").html('<img src="img/cat.gif"><br><br>' + "I win!")
-      showModal("catModal");
-    }
-
   });
 
   $("#play-again-button").click(function() {
     game = new Game();
     $(".square").html("");
   });
-
 });

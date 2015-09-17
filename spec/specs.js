@@ -35,6 +35,20 @@ describe("Board", function() {
     var testBoard = new Board();
     expect(testBoard.findSpace(1,2)).to.equal(testBoard.spaces[1])
   });
+
+  it("finds an empty space on board", function() {
+    var testPlayer = new Player("X");
+    var testBoard = new Board();
+    testBoard.spaces[0].markBy(testPlayer);
+    testBoard.spaces[1].markBy(testPlayer);
+    testBoard.spaces[2].markBy(testPlayer);
+    testBoard.spaces[3].markBy(testPlayer);
+    testBoard.spaces[4].markBy(testPlayer);
+    testBoard.spaces[5].markBy(testPlayer);
+    testBoard.spaces[6].markBy(testPlayer);
+    testBoard.spaces[7].markBy(testPlayer);
+    expect(testBoard.findEmptySpace()).to.eql(new Space(3, 3));
+  })
 });
 
 describe("Game", function() {

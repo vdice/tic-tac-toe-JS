@@ -86,16 +86,25 @@ $(document).ready(function() {
       game.changeTurn()
     }
 
+    var showModal = function(myModalName) {
+
+      $("#" + myModalName).modal({'show' : true});
+
+    }
+
     if (game.win()) {
       var winningPlayer = space.markedBy;
       var losingPlayer = game.turn();
       $("#wins").append(marks[winningPlayer.mark]);
       $("#losses").append(marks[losingPlayer.mark]);
 
-      alert("Winner!!!!!")
+    $("#winModalBody").html(marks[winningPlayer.mark] + ' wins!')
+      showModal("winModal");
     } else if ($(".square .hand").length === 5) {
-      alert('Cats!!!')
+    $("#catModalBody").html('<img src="img/cat.gif"><br><br>' + "I win!")
+      showModal("catModal");
     }
+
   });
 
   $("#play-again-button").click(function() {

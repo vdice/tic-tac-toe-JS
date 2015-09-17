@@ -4,6 +4,7 @@
     <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
     <title>Tic Tac Toe</title>
   </head>
@@ -49,7 +50,47 @@
           </div>
         </div>
       </div>
+
+
+    <div class="modal fade" id="winModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-content">
+          <div class="close-modal" data-dismiss="modal">
+              <div class="lr">
+                  <div class="rl">
+                  </div>
+              </div>
+          </div>
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2">
+                      <div class="modal-body" id="winModalBody">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
-  </center>
+
+    <div class="modal fade" id="catModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-content">
+          <div class="close-modal" data-dismiss="modal">
+              <div class="lr">
+                  <div class="rl">
+                  </div>
+              </div>
+          </div>
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2">
+                      <div class="modal-body" id="catModalBody">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    </div>
+    </center>
   </body>
 </html>

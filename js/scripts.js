@@ -28,22 +28,22 @@ Board.prototype.findSpace = function(xCoordinate, yCoordinate) {
 }
 
 function Game() {
-  this.player = new Player("X");
-  this.player1 = new Player("O");
+  this.playerX = new Player("X");
+  this.playerO = new Player("O");
   this.board = new Board();
-  this.currentTurn = this.player
+  this.currentTurn = this.playerX;
 }
 
 Game.prototype.turn = function() {
-  return this.currentTurn
+  return this.currentTurn;
 }
 
 Game.prototype.changeTurn = function() {
-  if (this.turn() === this.player) {
-     this.currentTurn = this.player1;
+  if (this.turn() === this.playerX) {
+     this.currentTurn = this.playerO;
    }
    else  {
-     this.currentTurn = this.player;
+     this.currentTurn = this.playerX;
    }
 }
 
@@ -74,30 +74,27 @@ Game.prototype.win = function() {
 
 $(document).ready(function() {
   var game = new Game();
-  var x = new Player("X");
-  var o = new Player("O");
 
   $(".square").click(function() {
     var coords = $(this).attr('id').split(',') // "1, 2" -> ["1", "2"]
     var space = game.board.findSpace(Number(coords[0]), Number(coords[1]));
 
-    if (!space.clicked) {
+    if (!space.markedBy) {
       if (game.turn().mark === "X") {
         $(this).append('<img class="hand" src="css/images/hand.jpg" style="height: 35px;">');
-        space.markBy(x);
+        space.markBy(game.playerX);
       } else {
         $(this).append('<img class="pumpkin" src="css/images/pumpkin.jpg" style="height: 35px;">');
-        space.markBy(o);
+        space.markBy(game.playerO);
       }
+      game.changeTurn()
     }
-    game.changeTurn()
 
     if (game.win()) {
       alert("Winner!!!!!")
+    } else if ($(".square .hand").length === 5) {
+      alert('Cats!!!')
     }
-
-
-
 
   });
 });

@@ -39,28 +39,25 @@ describe("Board", function() {
 
 describe("Game", function() {
   it("tells if there are 3 spaces in a row marked by the same player", function() {
-    var testPlayer = new Player("X");
-    var testPlayer1 = new Player("O");
     var testGame = new Game();
 
     expect(testGame.win()).to.equal(false);
-    testGame.board.spaces[0].markBy(testPlayer);
-    testGame.board.spaces[3].markBy(testPlayer1);
-    testGame.board.spaces[1].markBy(testPlayer);
-    testGame.board.spaces[7].markBy(testPlayer1);
-    testGame.board.spaces[2].markBy(testPlayer);
-    testGame.board.spaces[4].markBy(testPlayer);
+    testGame.board.spaces[0].markBy(testGame.playerX);
+    testGame.board.spaces[3].markBy(testGame.playerO);
+    testGame.board.spaces[1].markBy(testGame.playerX);
+    testGame.board.spaces[7].markBy(testGame.playerO);
+    testGame.board.spaces[2].markBy(testGame.playerX);
+    testGame.board.spaces[4].markBy(testGame.playerX);
     expect(testGame.win()).to.equal(true);
   });
 
   it("changes turns", function() {
-    var testPlayer = new Player("X");
-    var testPlayer1 = new Player("O");
     var testGame = new Game();
-    expect(testGame.turn()).to.eql(testPlayer);
+
+    expect(testGame.turn()).to.eql(testGame.playerX);
     testGame.changeTurn();
-    expect(testGame.turn()).to.eql(testPlayer1);
+    expect(testGame.turn()).to.eql(testGame.playerO);
     testGame.changeTurn();
-    expect(testGame.turn()).to.eql(testPlayer);
+    expect(testGame.turn()).to.eql(testGame.playerX);
   })
 })

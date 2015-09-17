@@ -73,24 +73,16 @@ Game.prototype.win = function() {
 
 $(document).ready(function() {
   var game = new Game();
-  var x = game.playerX;
-  var o = game.playerO;
   var marks = {'X': String('<img class="hand" src="img/hand.jpg">'),
                'O': String('<img class="pumpkin" src="img/pumpkin.jpg">')};
-
 
   $(".square").click(function() {
     var coords = $(this).attr('id').split(',') // "1, 2" -> ["1", "2"]
     var space = game.board.findSpace(Number(coords[0]), Number(coords[1]));
 
     if (!space.markedBy) {
-      if (game.turn().mark === "X") {
-        $(this).append(marks[x.mark]);
-        space.markBy(x);
-      } else {
-        $(this).append(marks[o.mark]);
-        space.markBy(o);
-      }
+      $(this).append(marks[game.turn().mark])
+      space.markBy(game.turn())
       game.changeTurn()
     }
 

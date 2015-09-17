@@ -21,10 +21,7 @@ td {
   text-align: center;
 }
 
-h1 {
-  font-size: 60px;
-}
-
-.td {
-  image: url("images/hand.jpg");
+.header-img {
+  width: 3em;
+  height: 3em;
 }

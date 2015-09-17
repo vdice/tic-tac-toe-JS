@@ -81,20 +81,27 @@ $(document).ready(function() {
 
     if (!space.markedBy) {
       if (game.turn().mark === "X") {
-        $(this).append('<img class="hand" src="css/images/hand.jpg" style="height: 35px;">');
+        $(this).append('<img class="hand" src="img/hand.jpg" style="height: 35px;">');
         space.markBy(game.playerX);
       } else {
-        $(this).append('<img class="pumpkin" src="css/images/pumpkin.jpg" style="height: 35px;">');
+        $(this).append('<img class="pumpkin" src="img/pumpkin.jpg" style="height: 35px;">');
         space.markBy(game.playerO);
       }
       game.changeTurn()
     }
 
     if (game.win()) {
+      var winningPlayer = space.markedBy;
+      // add to tracker stats #winningPlayer #wins id++
+      // add to tracker stats #losingPlayer #losses id++
       alert("Winner!!!!!")
     } else if ($(".square .hand").length === 5) {
       alert('Cats!!!')
     }
+  });
 
+  $("#play-again-button").click(function() {
+    game = new Game();
+    $(".square").html("");
   });
 });

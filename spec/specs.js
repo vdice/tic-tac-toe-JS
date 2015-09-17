@@ -43,6 +43,7 @@ describe("Game", function() {
     var testPlayer1 = new Player("O");
     var testGame = new Game();
 
+    expect(testGame.win()).to.equal(false);
     testGame.board.spaces[0].markBy(testPlayer);
     testGame.board.spaces[3].markBy(testPlayer1);
     testGame.board.spaces[1].markBy(testPlayer);
@@ -59,5 +60,7 @@ describe("Game", function() {
     expect(testGame.turn()).to.eql(testPlayer);
     testGame.changeTurn();
     expect(testGame.turn()).to.eql(testPlayer1);
+    testGame.changeTurn();
+    expect(testGame.turn()).to.eql(testPlayer);
   })
 })

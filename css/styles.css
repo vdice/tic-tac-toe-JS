@@ -38,3 +38,15 @@ td {
 .pumpkin {
   height: 2em;
 }
+
+.my-modal {
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+}
+
+/*.my-modal-content {
+  top: 50%;
+  left: 25%;
+  right: 25%;
+}*/

@@ -1,24 +1,28 @@
-Tic Tac Toe
-This app is an unfinished version of digitized tic-tac-toe.
+# _Tic Tac Toe_
 
-By Lindsay Culver and Alex Altieri
+##### _Tic Tac Toe, 9/17/2015_
 
-Description
+#### By _**Lindsay Culver & Alex Altieri & Kellen Kolbeck & Vaughn Dice**_
 
-The goal of this game is to determine a winner based on the rules of tic-tac-toe.
-2 players take turns and a winner is determined.
+## Description
 
-Right now it has functions to create players, spaces and boards. 
-Program can mark spaces with player, find a specific space on the board.
-Also, a method to determine if there is a winning play on the board.
-Our HTML is set up with a board and two different selector options for each space: pumpkin and hand.
-No game function yet, not able to make plays. 
+_The goal of this game is to determine a winner based on the rules of tic-tac-toe.
+2 players take turns and a winner is determined._
 
-Technology Used:
-JavaScript
+## Setup
 
-Legal
-Copyright (c) 2015 Lindsay Culver and Alex Altieri
+* _Clone repository_
+* _Open spec/spec-runner.html to run specs_
+* _Open tic-tac-toe.html in the browser of your choice_
+
+## Technologies Used
+
+_Written with JavaScript, mocha, chai, jQuery, Bootstrap._
+
+### Legal
+
+
+Copyright (c) 2015 **_Lindsay Culver & Alex Altieri & Kellen Kolbeck & Vaughn Dice_**
 
 This software is licensed under the MIT license.
 
